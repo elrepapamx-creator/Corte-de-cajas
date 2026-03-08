@@ -125,31 +125,24 @@ cursor:pointer;
 
 function calcular(){
 
+document.addEventListener("DOMContentLoaded", function(){
+
 let inputs = document.querySelectorAll("input");
 
-inputs.forEach((input, index) => {
+inputs.forEach(function(input, index){
 
 let clave = "campo_" + index;
 
-input.addEventListener("input", () => {
+let valor = localStorage.getItem(clave);
+
+if(valor !== null){
+input.value = valor;
+}
+
+// guardar cuando cambie
+input.addEventListener("input", function(){
 localStorage.setItem(clave, input.value);
 });
-
-});
-
-window.addEventListener("load", () => {
-
-let inputs = document.querySelectorAll("input");
-
-inputs.forEach((input, index) => {
-
-let clave = "campo_" + index;
-
-let valorGuardado = localStorage.getItem(clave);
-
-if(valorGuardado !== null){
-input.value = valorGuardado;
-}
 
 });
 
