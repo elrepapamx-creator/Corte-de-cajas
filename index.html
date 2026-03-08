@@ -125,6 +125,30 @@ cursor:pointer;
 
 function calcular(){
 
+let inputs = document.querySelectorAll("input")
+
+inputs.forEach(input => {
+
+input.addEventListener("input", () => {
+localStorage.setItem(input.className || input.id, input.value)
+})
+
+})
+
+window.onload = () => {
+
+inputs.forEach(input => {
+
+let valor = localStorage.getItem(input.className || input.id)
+
+if(valor){
+input.value = valor
+}
+
+})
+
+}
+
 let precioMagna = 23.99
 let precioPremium = 26.09
 
