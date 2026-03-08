@@ -133,50 +133,55 @@ cursor:pointer;
 
 function calcular(){
 
-let precioMagna = 23.99
-let precioPremium = 26.09
+let precioMagna = 23.99;
+let precioPremium = 26.09;
 
-let bombas = document.querySelectorAll(".bomba")
+let bombas = document.querySelectorAll(".bomba");
 
-let ventaTotal = 0
+let ventaTotal = 0;
 
 bombas.forEach(function(bomba){
 
-let magnaInicio = bomba.querySelector(".magnaInicio").value
-let magnaFinal = bomba.querySelector(".magnaFinal").value
+let magnaInicio = Number(bomba.querySelector(".magnaInicio").value);
+let magnaFinal = Number(bomba.querySelector(".magnaFinal").value);
 
-let premiumInicio = bomba.querySelector(".premiumInicio").value
-let premiumFinal = bomba.querySelector(".premiumFinal").value
+let premiumInicio = Number(bomba.querySelector(".premiumInicio").value);
+let premiumFinal = Number(bomba.querySelector(".premiumFinal").value);
 
-let litrosMagna = magnaFinal - magnaInicio
-let litrosPremium = premiumFinal - premiumInicio
+let litrosMagna = magnaFinal - magnaInicio;
+let litrosPremium = premiumFinal - premiumInicio;
 
-if(isNaN(litrosMagna)) litrosMagna = 0
-if(isNaN(litrosPremium)) litrosPremium = 0
+if(litrosMagna < 0 || isNaN(litrosMagna)) litrosMagna = 0;
+if(litrosPremium < 0 || isNaN(litrosPremium)) litrosPremium = 0;
 
-let ventaMagna = litrosMagna * precioMagna
-let ventaPremium = litrosPremium * precioPremium
+let ventaMagna = litrosMagna * precioMagna;
+let ventaPremium = litrosPremium * precioPremium;
 
-let ventaBomba = ventaMagna + ventaPremium
+let ventaBomba = ventaMagna + ventaPremium;
 
-ventaTotal += ventaBomba
+ventaTotal += ventaBomba;
 
-bomba.querySelector(".resultadoBomba").innerText =
+let resultado = bomba.querySelector(".resultadoBomba");
+
+if(resultado){
+resultado.innerText =
 "Magna: " + litrosMagna.toFixed(2) + " L\n" +
 "Premium: " + litrosPremium.toFixed(2) + " L\n" +
-"Venta: $" + ventaBomba.toFixed(2)
+"Venta: $" + ventaBomba.toFixed(2);
+}
 
-})
+});
 
-let efectivo = Number(document.getElementById("efectivo").value)
-let tarjeta = Number(document.getElementById("tarjeta").value)
+let efectivo = Number(document.getElementById("efectivo").value);
+let tarjeta = Number(document.getElementById("tarjeta").value);
 
-let recibido = efectivo + tarjeta
-let diferencia = recibido - ventaTotal
+let recibido = efectivo + tarjeta;
+
+let diferencia = recibido - ventaTotal;
 
 document.getElementById("resultado").innerText =
 "TOTAL VENDIDO: $" + ventaTotal.toFixed(2) + "\n" +
 "RECIBIDO: $" + recibido.toFixed(2) + "\n" +
-"DIFERENCIA: $" + diferencia.toFixed(2)
+"DIFERENCIA: $" + diferencia.toFixed(2);
 
 }
