@@ -1,0 +1,153 @@
+<h1>Corte de Gasolinera</h1>
+
+<h2>Precios</h2>
+<p>Magna: $23.99</p>
+<p>Premium: $26.09</p>
+
+
+<div class="bomba">
+
+<input type="text" placeholder="Bomba 1" class="nombreBomba">
+
+<h3>Magna</h3>
+<input type="number" class="magnaInicio" placeholder="Lectura inicial">
+<input type="number" class="magnaFinal" placeholder="Lectura final">
+
+<h3>Premium</h3>
+<input type="number" class="premiumInicio" placeholder="Lectura inicial">
+<input type="number" class="premiumFinal" placeholder="Lectura final">
+
+</div>
+
+<div class="bomba">
+
+<input type="text" placeholder="Bomba 2" class="nombreBomba">
+
+<h3>Magna</h3>
+<input type="number" class="magnaInicio" placeholder="Lectura inicial">
+<input type="number" class="magnaFinal" placeholder="Lectura final">
+
+<h3>Premium</h3>
+<input type="number" class="premiumInicio" placeholder="Lectura inicial">
+<input type="number" class="premiumFinal" placeholder="Lectura final">
+
+</div>
+
+<div class="bomba">
+
+<input type="text" placeholder="Bomba 3" class="nombreBomba">
+
+<h3>Magna</h3>
+<input type="number" class="magnaInicio" placeholder="Lectura inicial">
+<input type="number" class="magnaFinal" placeholder="Lectura final">
+
+<h3>Premium</h3>
+<input type="number" class="premiumInicio" placeholder="Lectura inicial">
+<input type="number" class="premiumFinal" placeholder="Lectura final">
+
+</div>
+
+<div class="bomba">
+
+<input type="text" placeholder="Bomba 4" class="nombreBomba">
+
+<h3>Magna</h3>
+<input type="number" class="magnaInicio" placeholder="Lectura inicial">
+<input type="number" class="magnaFinal" placeholder="Lectura final">
+
+<h3>Premium</h3>
+<input type="number" class="premiumInicio" placeholder="Lectura inicial">
+<input type="number" class="premiumFinal" placeholder="Lectura final">
+
+</div>
+
+<h2>Dinero recibido</h2>
+
+<input type="number" id="efectivo" placeholder="Efectivo">
+<input type="number" id="tarjeta" placeholder="Tarjeta">
+
+<button onclick="calcular()">Calcular corte</button>
+
+<h2 id="resultado"></h2>
+
+body{
+font-family: Arial;
+background:#0f2027;
+color:white;
+text-align:center;
+padding:20px;
+}
+
+input{
+display:block;
+margin:6px auto;
+padding:10px;
+width:200px;
+border-radius:8px;
+border:none;
+}
+
+.bomba{
+border:1px solid white;
+padding:15px;
+margin:15px auto;
+width:250px;
+border-radius:10px;
+}
+
+button{
+padding:12px 25px;
+background:#00c853;
+border:none;
+border-radius:8px;
+color:white;
+font-size:16px;
+cursor:pointer;
+}
+
+function calcular(){
+
+let precioMagna = 23.99
+let precioPremium = 26.09
+
+let magnaInicio = document.querySelectorAll(".magnaInicio")
+let magnaFinal = document.querySelectorAll(".magnaFinal")
+
+let premiumInicio = document.querySelectorAll(".premiumInicio")
+let premiumFinal = document.querySelectorAll(".premiumFinal")
+
+let totalMagna = 0
+let totalPremium = 0
+
+for(let i=0;i<magnaInicio.length;i++){
+
+let magna = Number(magnaFinal[i].value) - Number(magnaInicio[i].value)
+let premium = Number(premiumFinal[i].value) - Number(premiumInicio[i].value)
+
+totalMagna += magna
+totalPremium += premium
+
+}
+
+let ventaMagna = totalMagna * precioMagna
+let ventaPremium = totalPremium * precioPremium
+
+let ventaTotal = ventaMagna + ventaPremium
+
+let efectivo = Number(document.getElementById("efectivo").value)
+let tarjeta = Number(document.getElementById("tarjeta").value)
+
+let recibido = efectivo + tarjeta
+
+let diferencia = recibido - ventaTotal
+
+document.getElementById("resultado").innerText =
+"Magna vendidos: " + totalMagna.toFixed(2) + " L\n" +
+"Premium vendidos: " + totalPremium.toFixed(2) + " L\n\n" +
+"Venta Magna: $" + ventaMagna.toFixed(2) + "\n" +
+"Venta Premium: $" + ventaPremium.toFixed(2) + "\n\n" +
+"Total vendido: $" + ventaTotal.toFixed(2) + "\n" +
+"Total recibido: $" + recibido.toFixed(2) + "\n\n" +
+"Diferencia: $" + diferencia.toFixed(2)
+
+}
