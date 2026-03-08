@@ -125,29 +125,35 @@ cursor:pointer;
 
 function calcular(){
 
-let inputs = document.querySelectorAll("input")
+let inputs = document.querySelectorAll("input");
 
-inputs.forEach(input => {
+inputs.forEach((input, index) => {
+
+let clave = "campo_" + index;
 
 input.addEventListener("input", () => {
-localStorage.setItem(input.className || input.id, input.value)
-})
+localStorage.setItem(clave, input.value);
+});
 
-})
+});
 
-window.onload = () => {
+window.addEventListener("load", () => {
 
-inputs.forEach(input => {
+let inputs = document.querySelectorAll("input");
 
-let valor = localStorage.getItem(input.className || input.id)
+inputs.forEach((input, index) => {
 
-if(valor){
-input.value = valor
+let clave = "campo_" + index;
+
+let valorGuardado = localStorage.getItem(clave);
+
+if(valorGuardado !== null){
+input.value = valorGuardado;
 }
 
-})
+});
 
-}
+});
 
 let precioMagna = 23.99
 let precioPremium = 26.09
